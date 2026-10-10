@@ -3,28 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0d0221">
-<title>Configuração Secreta | Tutorial</title>
+<meta name="theme-color" content="#000000">
+<title>Confere | Configuração Secreta</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   html { scroll-behavior: smooth; }
   body {
     font-family: "Segoe UI", Arial, Helvetica, sans-serif;
-    background: linear-gradient(160deg, #0d0221 0%, #1a0b3d 55%, #2d0b4f 100%);
+    background:
+      radial-gradient(900px 520px at 50% -10%, rgba(226, 0, 26, .22), transparent 65%),
+      radial-gradient(700px 400px at 110% 105%, rgba(226, 0, 26, .12), transparent 60%),
+      #000;
     color: #fff;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 28px 16px calc(48px + env(safe-area-inset-bottom));
+    padding: 26px 16px calc(48px + env(safe-area-inset-bottom));
     -webkit-font-smoothing: antialiased;
+  }
+  .brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .logo {
+    width: clamp(78px, 20vw, 108px);
+    height: clamp(78px, 20vw, 108px);
+    filter: drop-shadow(0 0 22px rgba(226, 0, 26, .55));
+  }
+  .wordmark {
+    font-size: clamp(30px, 9vw, 52px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+  .wordmark .c { color: #fff; }
+  .wordmark .f { color: #e2001a; }
+  .tagline {
+    font-size: clamp(15px, 4vw, 22px);
+    font-weight: 700;
+    color: #e8e8e8;
+    line-height: 1.35;
+    margin-bottom: 6px;
+    padding: 0 8px;
+  }
+  .tagline::after {
+    content: "";
+    display: block;
+    width: 62px;
+    height: 4px;
+    border-radius: 999px;
+    background: #e2001a;
+    margin: 16px auto 24px;
   }
   .badge {
     display: inline-block;
-    background: rgba(255, 0, 128, .15);
-    border: 1px solid rgba(255, 0, 128, .5);
-    color: #ff6ec7;
+    background: rgba(226, 0, 26, .14);
+    border: 1px solid rgba(226, 0, 26, .55);
+    color: #ff5a6e;
     padding: 6px 16px;
     border-radius: 999px;
     font-size: 12px;
@@ -33,19 +73,21 @@
     margin-bottom: 18px;
   }
   h1 {
-    font-size: clamp(26px, 8vw, 48px);
+    font-size: clamp(26px, 8vw, 46px);
     line-height: 1.15;
     margin-bottom: 10px;
     padding: 0 4px;
-    background: linear-gradient(90deg, #ff2d95, #ffd166, #ff2d95);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    color: #fff;
+  }
+  h1 em {
+    font-style: normal;
+    color: #e2001a;
   }
   h2 {
-    font-size: clamp(16px, 4.5vw, 26px);
+    font-size: clamp(16px, 4.5vw, 24px);
     font-weight: 600;
-    color: #d8cfff;
+    color: #bdbdbd;
     margin-bottom: 26px;
     padding: 0 8px;
   }
@@ -55,7 +97,7 @@
     width: 100%;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 25px 60px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.08);
+    box-shadow: 0 25px 60px rgba(0,0,0,.7), 0 0 0 1px rgba(226,0,26,.28);
     background: #000;
     aspect-ratio: 16 / 9;
   }
@@ -74,7 +116,7 @@
     align-items: center;
     justify-content: center;
     gap: 16px;
-    background: radial-gradient(circle at center, rgba(45,11,79,.55), rgba(0,0,0,.85));
+    background: radial-gradient(circle at center, rgba(30,0,5,.5), rgba(0,0,0,.88));
     cursor: pointer;
     transition: opacity .3s ease;
     z-index: 3;
@@ -84,11 +126,11 @@
     width: clamp(72px, 18vw, 96px);
     height: clamp(72px, 18vw, 96px);
     border-radius: 50%;
-    background: linear-gradient(135deg, #ff2d95, #ff7b2d);
+    background: linear-gradient(135deg, #e2001a, #8f0010);
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 0 12px rgba(255,45,149,.18), 0 12px 35px rgba(255,45,149,.45);
+    box-shadow: 0 0 0 12px rgba(226, 0, 26, .16), 0 12px 35px rgba(226, 0, 26, .5);
     transition: transform .25s ease;
     animation: pulse 2.2s infinite;
   }
@@ -107,11 +149,11 @@
     font-size: 13px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: #ffd7ef;
+    color: #ffd7db;
   }
   @keyframes pulse {
-    0%, 100% { box-shadow: 0 0 0 12px rgba(255,45,149,.18), 0 12px 35px rgba(255,45,149,.45); }
-    50% { box-shadow: 0 0 0 22px rgba(255,45,149,.05), 0 12px 35px rgba(255,45,149,.45); }
+    0%, 100% { box-shadow: 0 0 0 12px rgba(226, 0, 26, .16), 0 12px 35px rgba(226, 0, 26, .5); }
+    50% { box-shadow: 0 0 0 22px rgba(226, 0, 26, .04), 0 12px 35px rgba(226, 0, 26, .5); }
   }
   .controls {
     position: absolute;
@@ -120,7 +162,7 @@
     bottom: 0;
     z-index: 2;
     padding: 26px 10px calc(10px + env(safe-area-inset-bottom));
-    background: linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,.35) 60%, transparent);
+    background: linear-gradient(to top, rgba(0,0,0,.9), rgba(0,0,0,.4) 60%, transparent);
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -156,7 +198,7 @@
     left: 0; top: 0; bottom: 0;
     width: 0;
     border-radius: 999px;
-    background: linear-gradient(90deg, #ff2d95, #ff7b2d);
+    background: linear-gradient(90deg, #e2001a, #ff3b4d);
   }
   .bar .knob {
     position: absolute;
@@ -166,7 +208,8 @@
     height: 15px;
     margin: -7.5px 0 0 -7.5px;
     border-radius: 50%;
-    background: #fff;
+    background: #e2001a;
+    border: 2px solid #fff;
     box-shadow: 0 2px 8px rgba(0,0,0,.5);
     transform: scale(0);
     transition: transform .2s ease;
@@ -188,19 +231,19 @@
     border: 0;
     color: #fff;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     border-radius: 10px;
     flex-shrink: 0;
   }
-  .ctrl:active { background: rgba(255,255,255,.15); }
+  .ctrl:active { background: rgba(226, 0, 26, .35); }
   .ctrl svg { width: 24px; height: 24px; fill: currentColor; }
   .ctrl.main svg { width: 30px; height: 30px; }
   .time {
     flex: 1;
     text-align: center;
     font-size: 13px;
-    color: #e6e0ff;
+    color: #e6e6e6;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
     overflow: hidden;
@@ -208,48 +251,107 @@
   .hint {
     margin-top: 14px;
     font-size: 13px;
-    color: #a99ed6;
+    color: #9a9a9a;
+  }
+  .features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 30px;
+    max-width: 880px;
+    width: 100%;
+  }
+  .feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 12px;
+    padding: 12px 14px;
+    text-align: left;
+  }
+  .feature svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    fill: none;
+    stroke: #e2001a;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .feature span {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #e0e0e0;
+    line-height: 1.3;
   }
   .steps {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-top: 32px;
+    margin-top: 30px;
     max-width: 880px;
     width: 100%;
   }
   .step {
-    background: rgba(255,255,255,.05);
-    border: 1px solid rgba(255,255,255,.1);
-    border-radius: 14px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-left: 3px solid #e2001a;
+    border-radius: 12px;
     padding: 18px 16px;
+    text-align: left;
   }
-  .step strong { display: block; color: #ffd166; margin-bottom: 6px; font-size: 15px; }
-  .step p { font-size: 14px; color: #c9c2e6; line-height: 1.5; }
+  .step strong { display: block; color: #e2001a; margin-bottom: 6px; font-size: 15px; }
+  .step p { font-size: 14px; color: #c9c9c9; line-height: 1.5; }
   footer {
     margin-top: 40px;
     font-size: 13px;
-    color: #8f86b5;
+    color: #7a7a7a;
   }
+  footer b { color: #fff; font-weight: 700; }
+  footer b i { font-style: normal; color: #e2001a; }
 
   @media (min-width: 720px) {
-    body { padding: 48px 24px 60px; }
+    body { padding: 44px 24px 60px; }
+    .features { grid-template-columns: repeat(4, 1fr); }
     .steps { flex-direction: row; gap: 14px; }
     .step { flex: 1 1 220px; }
     .controls { padding: 30px 16px 14px; gap: 10px; }
   }
   @media (orientation: landscape) and (max-height: 500px) {
     body { padding-top: 12px; }
-    .badge, h2, .steps, footer, .hint { display: none; }
-    h1 { font-size: 22px; margin-bottom: 8px; }
+    .brand, .tagline, .badge, h2, .steps, .features, footer, .hint { display: none; }
+    h1 { font-size: 20px; margin-bottom: 8px; }
     .player { max-height: calc(100vh - 56px); margin: 0 auto; }
   }
 </style>
 </head>
 <body>
 
+  <div class="brand">
+    <svg class="logo" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-label="Confere">
+      <defs>
+        <linearGradient id="gred" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#ff2b3d"/>
+          <stop offset="1" stop-color="#b30014"/>
+        </linearGradient>
+      </defs>
+      <rect x="4" y="4" width="112" height="112" rx="28" fill="#0b0b0d" stroke="rgba(226,0,26,.65)" stroke-width="2"/>
+      <circle cx="54" cy="50" r="30" fill="none" stroke="#f2f2f2" stroke-width="8"/>
+      <line x1="75" y1="71" x2="97" y2="93" stroke="#f2f2f2" stroke-width="10" stroke-linecap="round"/>
+      <path d="M54 70 C38 58 28 50 28 40 C28 33 34 29 40 29 C46 29 51 33 54 38 C57 33 62 29 68 29 C74 29 80 33 80 40 C80 50 70 58 54 70 Z" fill="url(#gred)"/>
+      <path d="M54 38 L49 46 L59 52 L52 60 L55 68" fill="none" stroke="#0b0b0d" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+    </svg>
+    <div class="wordmark"><span class="c">Con</span><span class="f">fere</span></div>
+  </div>
+
   <div class="badge">Acesso exclusivo</div>
-  <h1>A Configuração Secreta</h1>
+  <h1>A Configuração <em>Secreta</em></h1>
+  <p class="tagline">Descubra a verdade antes que seja tarde.</p>
   <h2>Descubra agora os segredos do seu cônjuge</h2>
 
   <div class="player-wrap">
@@ -291,6 +393,25 @@
     <p class="hint">Toque na tela para pausar. Use -10s para voltar o vídeo.</p>
   </div>
 
+  <div class="features">
+    <div class="feature">
+      <svg viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.5"/></svg>
+      <span>Monitore<br>atividades</span>
+    </div>
+    <div class="feature">
+      <svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.8A8 8 0 1 1 21 12z"/></svg>
+      <span>Analise<br>conversas</span>
+    </div>
+    <div class="feature">
+      <svg viewBox="0 0 24 24"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      <span>Verifique<br>localização</span>
+    </div>
+    <div class="feature">
+      <svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/><path d="M9.5 12l1.8 1.8 3.4-3.6"/></svg>
+      <span>Mais<br>segurança</span>
+    </div>
+  </div>
+
   <div class="steps">
     <div class="step">
       <strong>1. Aperte o play</strong>
@@ -306,7 +427,7 @@
     </div>
   </div>
 
-  <footer>Configuração Secreta &copy; 2026 — Tutorial oficial</footer>
+  <footer><b>Con<i>fere</i></b> &copy; 2026 — Descubra a verdade antes que seja tarde.</footer>
 
 <script>
 (function () {
@@ -385,7 +506,6 @@
     showControls();
   });
 
-  // toque no video: pausa / retoma
   video.addEventListener('click', function (e) {
     e.stopPropagation();
     if (overlay && !overlay.classList.contains('hidden')) return;
@@ -460,7 +580,7 @@
   bar.addEventListener('pointermove', function (e) {
     if (bar.seeking) seekTo(e.clientX);
   });
-  bar.addEventListener('pointerup', function (e) {
+  bar.addEventListener('pointerup', function () {
     bar.seeking = false;
     showControls();
   });
